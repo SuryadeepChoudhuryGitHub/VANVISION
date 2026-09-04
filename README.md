@@ -1,7 +1,7 @@
 # VANVISION
 **Forest Rights Intelligence & Decision Support System**
 *PS-7: AI-powered Decision Support System for Forest Rights Act (FRA) Monitoring*
-
+ 
 ---
 
 ## Overview
