@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="6" fill="#0f3f23"/>
+  <!-- Leaf / Tree Polygon Geometry -->
+  <path d="M16 4L25 14H19L24 21H18V28H14V21H8L13 14H7L16 4Z" fill="#22c563"/>
+  <circle cx="16" cy="14" r="2.5" fill="#ffffff" opacity="0.9"/>
+  <circle cx="21" cy="9" r="1.5" fill="#86efb0"/>
+</svg>
