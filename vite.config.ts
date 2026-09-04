@@ -10,5 +10,8 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
+    watch: {
+      ignored: ['**/vite.config.*', '**/.git/**'],
+    },
   },
 });
