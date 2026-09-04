@@ -32,11 +32,10 @@ export const RecentActivity: React.FC<RecentActivityProps> = ({ activities }) =>
             <Bell className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-slate-900">Live Cadastral Activity Feed</h3>
-            <p className="text-[11px] text-slate-500">Real-time system events, flags & titling updates</p>
+            <h3 className="text-sm font-bold text-slate-900">Cadastral Activity Log (Simulated)</h3>
+            <p className="text-[11px] text-slate-500">Simulated event stream and titling milestones</p>
           </div>
         </div>
-        <span className="text-[10px] font-mono text-slate-400">Auto-refresh: 30s</span>
       </div>
 
       <div className="mt-3 divide-y divide-slate-100 flex-1">

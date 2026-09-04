@@ -35,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggleCollapse })
       to: '/map',
       label: 'GIS Map',
       icon: MapIcon,
-      badge: 'Live',
+      badge: 'GIS',
     },
     {
       to: '/claims',
@@ -154,7 +154,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggleCollapse })
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <Radio className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-                <span className="text-[11px] font-semibold text-emerald-100">National Node Live</span>
+                <span className="text-[11px] font-semibold text-emerald-100">Evaluation Node (Active)</span>
               </div>
               <span className="text-[9px] font-mono text-emerald-400/80">v1.2</span>
             </div>

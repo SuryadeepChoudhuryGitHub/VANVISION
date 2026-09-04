@@ -8,11 +8,13 @@ import { AnomalyFilterBar } from '../components/anomalies/AnomalyFilterBar';
 import { AnomaliesTable } from '../components/anomalies/AnomaliesTable';
 import { AnomalyDetailModal } from '../components/anomalies/AnomalyDetailModal';
 import { LoadingSpinner } from '../components/common/LoadingState';
-import { AlertOctagon } from 'lucide-react';
+import { AlertOctagon, Sliders } from 'lucide-react';
+import { useSettings } from '../context/SettingsContext';
 
 export const AnomaliesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { settings } = useSettings();
   const [loading, setLoading] = useState(true);
   const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
   const [breakdown, setBreakdown] = useState<AnomalySeverityBreakdown | null>(null);
@@ -32,9 +34,14 @@ export const AnomaliesPage: React.FC = () => {
     async function loadAnomalies() {
       setLoading(true);
       try {
+        const engineConfig = {
+          maxProcessingDays: settings.maxProcessingDays,
+          landVarianceTolerancePct: settings.landVarianceTolerance,
+          autoFlagSpikes: settings.autoFlagSpikes,
+        };
         const [anomList, bd] = await Promise.all([
-          api.getAnomalies(filter),
-          api.getAnomalyBreakdown(),
+          api.getAnomalies(filter, engineConfig),
+          api.getAnomalyBreakdown(engineConfig),
         ]);
         setAnomalies(anomList);
         setBreakdown(bd);
@@ -48,7 +55,7 @@ export const AnomaliesPage: React.FC = () => {
       }
     }
     loadAnomalies();
-  }, [filter]);
+  }, [filter, settings]);
 
   const handleReset = () => {
     setFilter({
@@ -73,7 +80,11 @@ export const AnomaliesPage: React.FC = () => {
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-bold text-slate-900">Anomaly Investigation Dashboard</h2>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200">
-                High Priority Escalations
+                Deterministic Engine Queue
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                <Sliders className="w-3 h-3 text-slate-500" />
+                <span>Active Rules: {settings.maxProcessingDays}d SLA • ±{settings.landVarianceTolerance}% Area Margin</span>
               </span>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">

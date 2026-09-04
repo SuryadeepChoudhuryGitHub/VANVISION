@@ -84,7 +84,7 @@ export const AnomalySummary: React.FC<AnomalySummaryProps> = ({ breakdown }) => 
 
       <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
         <span>Total Flagged Queue: <b className="text-slate-800 font-mono">{total}</b></span>
-        <span className="text-rose-600 font-medium">18 Require MoTA Escalation</span>
+        <span className="text-rose-600 font-medium">{breakdown.critical} Require Priority Escalation</span>
       </div>
     </div>
   );

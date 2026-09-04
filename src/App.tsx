@@ -10,14 +10,16 @@ import { DistrictsPage } from './pages/DistrictsPage';
 import { AIInsightsPage } from './pages/AIInsightsPage';
 import { ReportsPage } from './pages/ReportsPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { SettingsProvider } from './context/SettingsContext';
 import { ShieldCheck, Info } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <BrowserRouter>
-      <div className="flex h-screen w-screen overflow-hidden bg-slate-100 text-slate-800">
+    <SettingsProvider>
+      <BrowserRouter>
+        <div className="flex h-screen w-screen overflow-hidden bg-slate-100 text-slate-800">
         {/* Collapsible Left Sidebar */}
         <Sidebar
           collapsed={sidebarCollapsed}
@@ -38,7 +40,7 @@ export const App: React.FC = () => {
               </span>
             </div>
             <span className="font-mono text-[10px] text-emerald-300/70 hidden md:inline">
-              VANVISION v1.0.0-rc1 • National Informatics Framework
+              VANVISION v1.0.0-rc1 • Prototype Research Architecture
             </span>
           </div>
 
@@ -61,7 +63,8 @@ export const App: React.FC = () => {
         </div>
       </div>
     </BrowserRouter>
-  );
+  </SettingsProvider>
+);
 };
 
 export default App;

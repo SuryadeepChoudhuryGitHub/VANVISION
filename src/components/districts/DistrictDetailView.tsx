@@ -128,7 +128,7 @@ export const DistrictDetailView: React.FC<DistrictDetailViewProps> = ({ district
             <span className="text-lg font-black text-slate-900 font-mono">
               {formatNumber(district.forestCoverSqKm)} km²
             </span>
-            <span className="text-[11px] text-slate-500 block">Survey of India ISFR baseline</span>
+            <span className="text-[11px] text-slate-500 block">Model Benchmark (Estimated Proxy)</span>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export const DistrictDetailView: React.FC<DistrictDetailViewProps> = ({ district
             <span className="text-lg font-black text-slate-900 font-mono">
               {district.tribalPopulationPct}%
             </span>
-            <span className="text-[11px] text-slate-500 block">Census Census Demographics</span>
+            <span className="text-[11px] text-slate-500 block">Demographic Model Estimate</span>
           </div>
         </div>
 

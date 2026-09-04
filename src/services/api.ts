@@ -5,20 +5,52 @@ import { OverviewStats, MonthlyTrend, AnomalySeverityBreakdown, RecentActivityIt
 import { ClaimsFilterState, AnomaliesFilterState } from '../types/filters';
 import { mockDistricts } from '../data/mockDistricts';
 import { mockClaims } from '../data/mockClaims';
-import { mockAnomalies } from '../data/mockAnomalies';
-import { mockOverviewStats, mockMonthlyTrends, mockAnomalyBreakdown, mockRecentActivity } from '../data/mockStats';
+import { mockOverviewStats, mockMonthlyTrends, mockRecentActivity } from '../data/mockStats';
+import {
+  detectAnomalies,
+  calculateAnomalyBreakdown,
+  AnomalyEngineConfig,
+  DEFAULT_ANOMALY_CONFIG,
+} from '../utils/anomalyEngine';
+
+function getStoredEngineConfig(): AnomalyEngineConfig {
+  try {
+    const saved = localStorage.getItem('vanvision_system_settings_v1');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return {
+        maxProcessingDays: parsed.maxProcessingDays ?? 90,
+        landVarianceTolerancePct: parsed.landVarianceTolerance ?? 10,
+        autoFlagSpikes: parsed.autoFlagSpikes ?? true,
+      };
+    }
+  } catch {
+    // Fallback
+  }
+  return DEFAULT_ANOMALY_CONFIG;
+}
 
 export const api = {
-  async getOverviewStats(): Promise<OverviewStats> {
-    return Promise.resolve({ ...mockOverviewStats });
+  async getOverviewStats(config?: AnomalyEngineConfig): Promise<OverviewStats> {
+    const activeConfig = config || getStoredEngineConfig();
+    const rawAnomalies = detectAnomalies(mockClaims, activeConfig);
+    const breakdown = calculateAnomalyBreakdown(rawAnomalies);
+
+    return Promise.resolve({
+      ...mockOverviewStats,
+      activeAnomalies: breakdown.total,
+      criticalAnomalies: breakdown.critical,
+    });
   },
 
   async getMonthlyTrends(): Promise<MonthlyTrend[]> {
     return Promise.resolve([...mockMonthlyTrends]);
   },
 
-  async getAnomalyBreakdown(): Promise<AnomalySeverityBreakdown> {
-    return Promise.resolve({ ...mockAnomalyBreakdown });
+  async getAnomalyBreakdown(config?: AnomalyEngineConfig): Promise<AnomalySeverityBreakdown> {
+    const activeConfig = config || getStoredEngineConfig();
+    const rawAnomalies = detectAnomalies(mockClaims, activeConfig);
+    return Promise.resolve(calculateAnomalyBreakdown(rawAnomalies));
   },
 
   async getRecentActivity(): Promise<RecentActivityItem[]> {
@@ -102,8 +134,13 @@ export const api = {
     return Promise.resolve(found);
   },
 
-  async getAnomalies(filter?: Partial<AnomaliesFilterState>): Promise<Anomaly[]> {
-    let result = [...mockAnomalies];
+  async getAnomalies(
+    filter?: Partial<AnomaliesFilterState>,
+    config?: AnomalyEngineConfig
+  ): Promise<Anomaly[]> {
+    const activeConfig = config || getStoredEngineConfig();
+    const rawAnomalies = detectAnomalies(mockClaims, activeConfig);
+    let result = [...rawAnomalies];
 
     if (filter?.search) {
       const q = filter.search.toLowerCase();
@@ -113,7 +150,8 @@ export const api = {
           a.claimId.toLowerCase().includes(q) ||
           a.districtName.toLowerCase().includes(q) ||
           (a.claimantName && a.claimantName.toLowerCase().includes(q)) ||
-          a.explanation.toLowerCase().includes(q)
+          a.explanation.toLowerCase().includes(q) ||
+          (a.ruleTriggered && a.ruleTriggered.toLowerCase().includes(q))
       );
     }
 
@@ -132,8 +170,10 @@ export const api = {
     return Promise.resolve(result);
   },
 
-  async getAnomalyById(id: string): Promise<Anomaly | undefined> {
-    const found = mockAnomalies.find(a => a.id === id);
+  async getAnomalyById(id: string, config?: AnomalyEngineConfig): Promise<Anomaly | undefined> {
+    const activeConfig = config || getStoredEngineConfig();
+    const rawAnomalies = detectAnomalies(mockClaims, activeConfig);
+    const found = rawAnomalies.find(a => a.id === id || a.claimId === id);
     return Promise.resolve(found);
   },
 };

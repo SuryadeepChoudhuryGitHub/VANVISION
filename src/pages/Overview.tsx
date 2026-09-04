@@ -2,23 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { OverviewStats, MonthlyTrend, AnomalySeverityBreakdown, RecentActivityItem } from '../types/stats';
 import { District } from '../types/districts';
+import { Anomaly } from '../types/anomalies';
 import { KpiGrid } from '../components/dashboard/KpiGrid';
 import { ForestGisMap } from '../components/maps/ForestGisMap';
 import { PriorityDistricts } from '../components/dashboard/PriorityDistricts';
+import { StateProgressSummary } from '../components/dashboard/StateProgressSummary';
 import { ClaimTrendChart } from '../components/dashboard/ClaimTrendChart';
 import { AnomalySummary } from '../components/dashboard/AnomalySummary';
 import { RecentActivity } from '../components/dashboard/RecentActivity';
 import { DistrictPopup } from '../components/maps/DistrictPopup';
 import { LoadingSpinner } from '../components/common/LoadingState';
+import { useSettings } from '../context/SettingsContext';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Sparkles, MapPin, ChevronRight, X } from 'lucide-react';
 
 export const Overview: React.FC = () => {
   const navigate = useNavigate();
+  const { settings } = useSettings();
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<OverviewStats | null>(null);
   const [trends, setTrends] = useState<MonthlyTrend[]>([]);
   const [anomalyBreakdown, setAnomalyBreakdown] = useState<AnomalySeverityBreakdown | null>(null);
+  const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
   const [activities, setActivities] = useState<RecentActivityItem[]>([]);
   const [districts, setDistricts] = useState<District[]>([]);
   const [selectedDistrict, setSelectedDistrict] = useState<District | null>(null);
@@ -28,16 +33,24 @@ export const Overview: React.FC = () => {
     async function loadData() {
       try {
         setLoading(true);
-        const [s, t, ab, act, dists] = await Promise.all([
-          api.getOverviewStats(),
+        const engineConfig = {
+          maxProcessingDays: settings.maxProcessingDays,
+          landVarianceTolerancePct: settings.landVarianceTolerance,
+          autoFlagSpikes: settings.autoFlagSpikes,
+        };
+
+        const [s, t, ab, anoms, act, dists] = await Promise.all([
+          api.getOverviewStats(engineConfig),
           api.getMonthlyTrends(),
-          api.getAnomalyBreakdown(),
+          api.getAnomalyBreakdown(engineConfig),
+          api.getAnomalies({}, engineConfig),
           api.getRecentActivity(),
           api.getDistricts(),
         ]);
         setStats(s);
         setTrends(t);
         setAnomalyBreakdown(ab);
+        setAnomalies(anoms);
         setActivities(act);
         setDistricts(dists);
 
@@ -49,7 +62,7 @@ export const Overview: React.FC = () => {
       }
     }
     loadData();
-  }, []);
+  }, [settings]);
 
   if (loading || !stats || !anomalyBreakdown) {
     return <LoadingSpinner label="Loading Executive Decision Intelligence..." className="h-96" />;
@@ -117,7 +130,7 @@ export const Overview: React.FC = () => {
               </div>
             </div>
             <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
-              Datum: WGS 84 / SOI Reference
+              Datum: WGS 84 / WebGIS Standard
             </span>
           </div>
 
@@ -163,7 +176,10 @@ export const Overview: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. Analytics Row: Claim Trend Chart + Anomaly Breakdown */}
+      {/* 4. State-Wise Implementation Matrix (Calculated Dynamic Rollups) */}
+      <StateProgressSummary districts={districts} anomalies={anomalies} />
+
+      {/* 5. Analytics Row: Claim Trend Chart + Anomaly Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <ClaimTrendChart data={trends} />

@@ -47,7 +47,7 @@ export const ClaimDetailModal: React.FC<ClaimDetailModalProps> = ({ claim, onClo
           <StatusBadge status={claim.status} />
         </div>
       }
-      subtitle={`Forest Rights Dossier • State of ${claim.state} • Recorded on FRA Portal`}
+      subtitle={`Forest Rights Dossier • State of ${claim.state} • Recorded in Evaluation Registry`}
     >
       <div className="space-y-6 text-slate-800 text-xs">
         {/* Workflow Progression Stepper */}
@@ -287,7 +287,7 @@ export const ClaimDetailModal: React.FC<ClaimDetailModalProps> = ({ claim, onClo
             Recorded Date: {formatDate(claim.submissionDate)} ({formatDays(claim.processingDays)} in system)
           </div>
           <button
-            onClick={() => alert(`Simulated: Downloading official FRA dossier PDF for ${claim.id}`)}
+            onClick={() => alert(`Simulated: Downloading prototype FRA dossier summary for ${claim.id}`)}
             className="px-4 py-2 bg-forest-800 hover:bg-forest-900 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />

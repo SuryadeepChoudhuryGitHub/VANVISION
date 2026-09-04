@@ -43,7 +43,7 @@ export const AIInsightsPage: React.FC = () => {
     'Which districts require immediate attention?': {
       answer:
         'The top 3 districts requiring immediate intervention by State Level Monitoring Committees (SLMC) are:\n1. West Singhbhum (Jharkhand) - Risk Score 86: 88 anomalies including active iron ore mining lease overlaps in Saranda Forest.\n2. Rayagada (Odisha) - Risk Score 84: 78 anomalies with unverified customary CFR boundaries exceeding 1,800 Ha.\n3. Mandla (Madhya Pradesh) - Risk Score 82: Severe SDLC processing backlog affecting 183 tribal claimants.',
-      refs: ['National Priority Matrix', 'MoTA Quarter 3 Bulletin'],
+      refs: ['Simulated Priority Matrix', 'Prototype Advisory Template'],
     },
     'Summarize CFR claims status across Odisha and Chhattisgarh': {
       answer:
@@ -69,7 +69,7 @@ export const AIInsightsPage: React.FC = () => {
 
     setTimeout(() => {
       const match = simulatedResponses[query] || {
-        answer: `Simulated Analysis for "${query}": Based on the active telemetry across 52 monitored districts, our pattern analysis detects consistent operational variance in SDLC committee review intervals and revenue boundary synchronization. In Phase 2, this will execute real-time vector semantic retrieval over all scanned Gram Sabha resolutions and satellite boundary polygons.`,
+        answer: `Simulated Analysis for "${query}": Based on the active telemetry across 52 monitored districts, our pattern analysis detects consistent operational variance in SDLC committee review intervals and revenue boundary synchronization. In Phase 2, this will execute indexed vector semantic retrieval over all scanned Gram Sabha resolutions and satellite boundary polygons.`,
         refs: ['VANVISION Mock Cadastral Engine', 'FRA Section 3(1) Index'],
       };
 
@@ -95,12 +95,12 @@ export const AIInsightsPage: React.FC = () => {
           <div>
             <span className="font-bold">AI Decision Support Engine (Phase 1 Preview)</span>
             <p className="text-[11px] text-forest-800/80 mt-0.5">
-              Demonstrating intended cognitive workflow. Production LLM, RAG indexing of Gram Sabha resolutions, and spatial anomaly explanations will connect to live backend in Phase 2.
+              Demonstrating intended cognitive workflow. Production LLM, RAG indexing of Gram Sabha resolutions, and spatial anomaly explanations will connect to evaluated backend in Phase 2.
             </p>
           </div>
         </div>
         <span className="px-2 py-1 rounded bg-forest-800 text-white font-mono font-bold text-[10px] shrink-0">
-          PREVIEW MODE
+          PREVIEW / DEMO MODEL
         </span>
       </div>
 
@@ -218,7 +218,7 @@ export const AIInsightsPage: React.FC = () => {
 
                 {m.sourceReferences && (
                   <div className="mt-2.5 pt-2 border-t border-slate-200/80 text-[10px]">
-                    <span className="font-bold text-slate-500 block mb-1">Citations / Verified Context:</span>
+                    <span className="font-bold text-slate-500 block mb-1">Demonstration Context References:</span>
                     <div className="flex flex-wrap gap-1">
                       {m.sourceReferences.map((ref, i) => (
                         <span key={i} className="px-1.5 py-0.5 rounded bg-white text-slate-700 border border-slate-200 font-mono">

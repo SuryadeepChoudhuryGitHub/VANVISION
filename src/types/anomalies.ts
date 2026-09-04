@@ -19,6 +19,18 @@ export interface AnomalyEvidence {
   delta?: string;
 }
 
+export interface MathematicalEvidence {
+  ruleName: string;
+  metricLabel: string;
+  claimedValue: string | number;
+  expectedValue: string | number;
+  difference: string | number;
+  threshold: string | number;
+  tolerancePercentage?: number;
+  unit?: string;
+  statusText: string;
+}
+
 export interface Anomaly {
   id: string; // e.g. ANOM-2026-0812
   claimId: string;
@@ -36,4 +48,7 @@ export interface Anomaly {
   evidence: AnomalyEvidence[];
   recommendedAction: string;
   assignedOfficer?: string;
+  ruleTriggered?: string;
+  mathematicalEvidence?: MathematicalEvidence;
 }
+

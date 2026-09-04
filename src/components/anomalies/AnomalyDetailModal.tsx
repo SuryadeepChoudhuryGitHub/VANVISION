@@ -12,6 +12,7 @@ import {
   UserCheck,
   Calendar,
   ExternalLink,
+  Calculator,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -92,7 +93,64 @@ export const AnomalyDetailModal: React.FC<AnomalyDetailModalProps> = ({
           </p>
         </div>
 
-        {/* Section 2: Underlying Numerical Evidence */}
+        {/* Section 2: Deterministic Rule Evidence & Mathematical Proof */}
+        {anomaly.mathematicalEvidence && (
+          <div className="p-4 border border-blue-200 bg-blue-50/40 rounded-xl space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-200/80 pb-2">
+              <div className="flex items-center gap-2">
+                <Calculator className="w-4 h-4 text-blue-700" />
+                <span className="font-bold text-slate-900 uppercase tracking-wide text-[11px]">
+                  RULE TRIGGERED: {anomaly.mathematicalEvidence.ruleName}
+                </span>
+              </div>
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-100 text-rose-800 border border-rose-200 self-start sm:self-auto">
+                {anomaly.mathematicalEvidence.statusText}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+              <div className="p-2.5 bg-white border border-blue-200/80 rounded-lg">
+                <span className="text-[10px] font-bold text-slate-500 uppercase block">
+                  {anomaly.anomalyType === 'Processing Delay' ? 'Claim Processing Time' : 'Claimed Area'}
+                </span>
+                <span className="text-sm font-black text-slate-900 font-mono mt-0.5 block">
+                  {anomaly.mathematicalEvidence.claimedValue}
+                </span>
+              </div>
+
+              <div className="p-2.5 bg-white border border-blue-200/80 rounded-lg">
+                <span className="text-[10px] font-bold text-slate-500 uppercase block">
+                  {anomaly.anomalyType === 'Processing Delay' ? 'Allowed SLA' : 'Recorded Area'}
+                </span>
+                <span className="text-sm font-black text-slate-900 font-mono mt-0.5 block">
+                  {anomaly.mathematicalEvidence.expectedValue}
+                </span>
+              </div>
+
+              <div className="p-2.5 bg-white border border-blue-200/80 rounded-lg">
+                <span className="text-[10px] font-bold text-slate-500 uppercase block">
+                  {anomaly.anomalyType === 'Processing Delay' ? 'Excess Delay' : 'Difference'}
+                </span>
+                <span className="text-sm font-black text-rose-600 font-mono mt-0.5 block">
+                  {anomaly.mathematicalEvidence.difference}
+                </span>
+              </div>
+
+              <div className="p-2.5 bg-white border border-blue-200/80 rounded-lg">
+                <span className="text-[10px] font-bold text-slate-500 uppercase block">
+                  {anomaly.mathematicalEvidence.tolerancePercentage !== undefined ? 'Difference % / Threshold' : 'Threshold'}
+                </span>
+                <span className="text-sm font-black text-slate-900 font-mono mt-0.5 block">
+                  {anomaly.mathematicalEvidence.tolerancePercentage !== undefined
+                    ? `${anomaly.mathematicalEvidence.tolerancePercentage}% (Tol: ${anomaly.mathematicalEvidence.threshold})`
+                    : anomaly.mathematicalEvidence.threshold}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Section 3: Underlying Numerical Evidence & Telemetry */}
         <div className="p-4 border border-slate-200 bg-white rounded-xl shadow-2xs space-y-3">
           <h4 className="text-xs font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
             <Scale className="w-4 h-4 text-forest-700" />

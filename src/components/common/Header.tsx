@@ -137,7 +137,7 @@ export const Header: React.FC<HeaderProps> = () => {
             </div>
             <div className="hidden lg:flex flex-col text-left">
               <span className="text-xs font-semibold text-slate-800 leading-tight">P. K. Sharma</span>
-              <span className="text-[10px] text-slate-500 leading-tight">Joint Secretary (MoTA)</span>
+              <span className="text-[10px] text-emerald-700 font-medium leading-tight">Demo Officer Persona</span>
             </div>
           </div>
         </div>

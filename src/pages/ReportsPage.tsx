@@ -53,11 +53,11 @@ export const ReportsPage: React.FC = () => {
     },
     {
       id: 'rep-05',
-      title: 'Monthly FRA Implementation Bulletin (MoTA)',
+      title: 'Monthly FRA Implementation Bulletin (Template)',
       category: 'Executive Summary',
-      description: 'Official statistical summary compiled for the Ministry of Tribal Affairs (MoTA) oversight panel and Parliamentary consultative committees.',
+      description: 'Standardized reporting template for administrative review compiled for mock inter-agency coordination.',
       lastGenerated: '31 Aug 2026',
-      cadence: 'Monthly Official',
+      cadence: 'Monthly Template',
       formats: ['PDF'],
     },
   ];
