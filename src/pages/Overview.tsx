@@ -14,7 +14,7 @@ import { DistrictPopup } from '../components/maps/DistrictPopup';
 import { LoadingSpinner } from '../components/common/LoadingState';
 import { useSettings } from '../context/SettingsContext';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Sparkles, MapPin, ChevronRight, X } from 'lucide-react';
+import { Shield, Sparkles, MapPin, AlertTriangle, X } from 'lucide-react';
 
 export const Overview: React.FC = () => {
   const navigate = useNavigate();
@@ -74,47 +74,59 @@ export const Overview: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Executive Banner */}
-      <div className="bg-gradient-to-r from-[#09291c] via-[#0e3b29] to-[#124b35] rounded-xl p-5 text-white shadow-sm border border-emerald-900/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
+      {/* Executive Intelligence Briefing Hero */}
+      <div className="bg-[#08281a] rounded-xl p-5 sm:p-6 text-white shadow-xs border border-emerald-900/80 flex flex-col md:flex-row md:items-center justify-between gap-5">
+        <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-800 text-emerald-200 border border-emerald-700/60">
-              Decision Support Active
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-800/80 text-emerald-200 border border-emerald-600/40">
+              National Situation Report
             </span>
-            <span className="text-xs text-emerald-300/80">Forest Rights Act (FRA) Cadastral Intelligence</span>
+            <span className="text-xs text-emerald-300/80">Forest Rights Act (FRA) 2006 Monitoring</span>
           </div>
-          <h2 className="text-xl font-extrabold text-white tracking-tight mt-1">
-            National Forest Rights Implementation Overview
+
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            Implementation & Cadastral Risk Briefing
           </h2>
-          <p className="text-xs text-emerald-100/80 mt-1 max-w-2xl leading-relaxed">
-            Consolidated spatial monitoring and anomaly detection across 52 scheduled districts. 
-            Prioritizing title security for Scheduled Tribes (ST) and Other Traditional Forest Dwellers (OTFD).
+
+          <p className="text-xs text-emerald-100/80 max-w-3xl leading-relaxed">
+            <b className="text-white">Current Situation:</b> 52 scheduled tribal districts actively monitored with <b>{stats.approvedClaims.toLocaleString()} titles conferred</b> (70.9% approval).{' '}
+            <b className="text-emerald-200">What to Investigate:</b> <b>{stats.criticalAnomalies} critical anomalies</b> flagged, primarily statutory SDLC review backlogs and forest reserve boundary overlaps in Mandla, Rayagada, and West Singhbhum.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs shrink-0">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center gap-2.5 text-xs shrink-0">
           <button
-            onClick={() => navigate('/ai-insights')}
-            className="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold flex items-center gap-1.5 transition-colors shadow-xs"
+            onClick={() => navigate('/anomalies?severity=Critical')}
+            className="px-3.5 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>AI Copilot Briefing</span>
+            <AlertTriangle className="w-4 h-4" />
+            <span>Investigate {stats.criticalAnomalies} Critical Flags</span>
           </button>
+
           <button
             onClick={() => navigate('/map')}
-            className="px-3.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold flex items-center gap-1.5 transition-colors"
+            className="px-3.5 py-2 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white font-semibold flex items-center gap-1.5 transition-colors border border-emerald-500/30 cursor-pointer"
           >
-            <MapPin className="w-3.5 h-3.5" />
-            <span>Full GIS Studio</span>
+            <MapPin className="w-4 h-4 text-emerald-300" />
+            <span>Open Spatial GIS</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/ai-insights')}
+            className="p-2 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 hover:text-white border border-emerald-800 transition-colors cursor-pointer"
+            title="Launch Administrative Copilot"
+          >
+            <Sparkles className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* 1. 6 KPI Cards */}
+      {/* 1. Primary & Secondary KPI Grid */}
       <KpiGrid stats={stats} />
 
       {/* 2. Main GIS Overview & Priority Districts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Large GIS Map Panel (2 cols) */}
         <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-xs p-4 flex flex-col">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
@@ -151,7 +163,7 @@ export const Overview: React.FC = () => {
                 <div className="relative">
                   <button
                     onClick={() => setSelectedDistrict(null)}
-                    className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-700 bg-white/80 rounded-full z-30 transition-colors"
+                    className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-700 bg-white/80 rounded-full z-30 transition-colors cursor-pointer"
                     title="Close District Card"
                   >
                     <X className="w-4 h-4" />
@@ -176,11 +188,13 @@ export const Overview: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. State-Wise Implementation Matrix (Calculated Dynamic Rollups) */}
-      <StateProgressSummary districts={districts} anomalies={anomalies} />
+      {/* 4. State-Wise Implementation Matrix */}
+      {settings.showStateMatrix && (
+        <StateProgressSummary districts={districts} anomalies={anomalies} />
+      )}
 
       {/* 5. Analytics Row: Claim Trend Chart + Anomaly Breakdown */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="lg:col-span-2">
           <ClaimTrendChart data={trends} />
         </div>
@@ -189,8 +203,10 @@ export const Overview: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. Recent Activity Feed */}
-      <RecentActivity activities={activities} />
+      {/* 6. Recent Activity Feed */}
+      {settings.showActivityFeed && (
+        <RecentActivity activities={activities} />
+      )}
     </div>
   );
 };
