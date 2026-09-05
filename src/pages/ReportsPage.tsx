@@ -117,15 +117,15 @@ export const ReportsPage: React.FC = () => {
   return (
     <div className="space-y-5">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs transition-colors">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-xl font-bold text-slate-900">Administrative Reports & Data Exports</h2>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-forest-100 text-forest-800 border border-forest-200">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Administrative Reports & Data Exports</h2>
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-forest-100 dark:bg-emerald-950 text-forest-800 dark:text-emerald-300 border border-forest-200 dark:border-emerald-800">
               Reporting Center
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Standardized evaluation report templates for compliance monitoring, spatial parcel exports, and statutory audits.
           </p>
         </div>
@@ -139,8 +139,8 @@ export const ReportsPage: React.FC = () => {
             onClick={() => setActiveCategory(cat)}
             className={`px-3 py-1.5 rounded-lg font-semibold transition-all whitespace-nowrap cursor-pointer ${
               activeCategory === cat
-                ? 'bg-forest-800 text-white shadow-xs'
-                : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
+                ? 'bg-forest-800 dark:bg-emerald-700 text-white shadow-xs'
+                : 'bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
             {cat}
@@ -153,27 +153,27 @@ export const ReportsPage: React.FC = () => {
         {filteredReports.map((rep) => (
           <div
             key={rep.id}
-            className="bg-white rounded-xl border border-slate-200 shadow-xs p-5 flex flex-col justify-between hover:shadow-md transition-shadow group"
+            className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs p-5 flex flex-col justify-between hover:shadow-md transition-all group"
           >
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-forest-800 bg-forest-50 px-2 py-0.5 rounded border border-forest-200">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-forest-800 dark:text-emerald-300 bg-forest-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-forest-200 dark:border-emerald-800">
                   {rep.category}
                 </span>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-slate-400 font-medium">{rep.cadence}</span>
+                  <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">{rep.cadence}</span>
                   {getStatusBadge(rep.status)}
                 </div>
               </div>
 
-              <h3 className="text-sm font-bold text-slate-900 leading-snug group-hover:text-forest-800 transition-colors">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug group-hover:text-forest-800 dark:group-hover:text-emerald-400 transition-colors">
                 {rep.title}
               </h3>
-              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{rep.purpose}</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">{rep.purpose}</p>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
-              <span className="text-[11px] text-slate-400 font-mono">
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <span className="text-[11px] text-slate-400 dark:text-slate-500 font-mono">
                 Compilation: {rep.lastGenerated}
               </span>
 
@@ -185,7 +185,7 @@ export const ReportsPage: React.FC = () => {
                       key={fmt}
                       disabled={isDownloading}
                       onClick={() => handleDownload(rep.id, fmt)}
-                      className="px-2.5 py-1.5 bg-slate-100 hover:bg-forest-850 hover:text-white text-slate-700 rounded-lg font-semibold text-[11px] flex items-center gap-1 transition-colors disabled:opacity-50 cursor-pointer shadow-2xs"
+                      className="px-2.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-forest-850 dark:hover:bg-emerald-700 hover:text-white text-slate-700 dark:text-slate-200 rounded-lg font-semibold text-[11px] flex items-center gap-1 transition-colors disabled:opacity-50 cursor-pointer shadow-2xs"
                     >
                       <Download className="w-3 h-3" />
                       <span>{isDownloading ? 'Generating...' : fmt}</span>

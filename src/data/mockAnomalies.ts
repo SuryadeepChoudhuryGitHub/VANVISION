@@ -21,7 +21,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Revenue Record Match', claimedValue: 'Khasra 412/1', expectedValue: 'Khasra 412/4', delta: 'Mismatch' },
     ],
     recommendedAction: 'Mandate ground GPS joint demarcation with Forest Guard and Revenue Inspector before SDLC sign-off.',
-    assignedOfficer: 'S. K. Verma (SDO Forest, Mandla)',
+    assignedOfficer: 'SDO Forest Desk, Mandla',
   },
   {
     id: 'ANOM-2026-0802',
@@ -42,7 +42,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Current Pending Time', claimedValue: '198', expectedValue: '60', unit: 'Days', delta: '+138 Days' },
     ],
     recommendedAction: 'Issue automatic statutory reminder notice to SDLC Sub-Divisional Magistrate.',
-    assignedOfficer: 'P. N. Mishra (SDM Bichhiya)',
+    assignedOfficer: 'SDM Scrutiny Desk, Bichhiya',
   },
   {
     id: 'ANOM-2026-0803',
@@ -63,7 +63,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Claim Type', claimedValue: 'IFR (Individual)', expectedValue: 'Non-alienable', delta: 'Requires DLC review' },
     ],
     recommendedAction: 'Field verification by Sub-Divisional Level Committee (SDLC) and GIS map overlay validation recommended.',
-    assignedOfficer: 'Anurag Soni (DFO Balaghat)',
+    assignedOfficer: 'DFO Monitoring Cell, Balaghat',
   },
   {
     id: 'ANOM-2026-0804',
@@ -84,7 +84,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Participating Villages', claimedValue: '1 Gram Sabha', expectedValue: '3 Gram Sabhas', delta: 'Joint Res Missing' },
     ],
     recommendedAction: 'Schedule joint Gram Sabha convergence meeting with Niyamgiri cluster villages.',
-    assignedOfficer: 'B. C. Patra (Collector Rayagada)',
+    assignedOfficer: 'Collectorate FRA Cell, Rayagada',
   },
   {
     id: 'ANOM-2026-0805',
@@ -105,7 +105,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Gram Sabha Resolution Date', claimedValue: '2024-04-12', expectedValue: 'Pre-2005 Proof', delta: 'Vesting proof scrutiny' },
     ],
     recommendedAction: 'Convene State Level Monitoring Committee (SLMC) urgent legal and historical rights determination.',
-    assignedOfficer: 'Rajesh Topno (DLC Member Secretary)',
+    assignedOfficer: 'DLC Secretariat Unit',
   },
   {
     id: 'ANOM-2026-0806',
@@ -126,7 +126,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Pending Office', claimedValue: 'SDLC Jagdalpur', expectedValue: 'DLC Bastar', delta: 'Workflow Freeze' },
     ],
     recommendedAction: 'Direct SDLC Jagdalpur to table file at the upcoming fortnightly review meeting.',
-    assignedOfficer: 'Deepak Mandavi (Tehsildar)',
+    assignedOfficer: 'Tehsil Revenue Desk, Jagdalpur',
   },
   {
     id: 'ANOM-2026-0807',
@@ -147,7 +147,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Applicant Biometric/Aadhaar', claimedValue: 'Exact Match', expectedValue: 'Unique', delta: 'Duplicate Identity' },
     ],
     recommendedAction: 'Merge duplicate docket and verify whether claim was filed independently at both Gram Sabha and FRC levels.',
-    assignedOfficer: 'Ramesh Atram (FRC Coordinator)',
+    assignedOfficer: 'FRC Coordination Desk',
   },
   {
     id: 'ANOM-2026-0808',
@@ -168,7 +168,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Block Median Area', claimedValue: '1.15', expectedValue: '1.15', unit: 'Ha', delta: 'Normal baseline' },
     ],
     recommendedAction: 'Verify physical cultivation boundaries using historical Landsat/Sentinel satellite imagery from 2005.',
-    assignedOfficer: 'V. K. Pandey (SDO Tamia)',
+    assignedOfficer: 'SDO Scrutiny Desk, Tamia',
   },
   {
     id: 'ANOM-2026-0809',
@@ -189,7 +189,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Gram Sabha Quorum Record', claimedValue: 'Unverified Batch', expectedValue: 'Individual Quorum', delta: 'Needs scrutiny' },
     ],
     recommendedAction: 'Conduct spot verification of Gram Sabha registers in 8 suspect villages.',
-    assignedOfficer: 'S. N. Mohapatra (PA ITDA Baripada)',
+    assignedOfficer: 'ITDA Nodal Agency, Baripada',
   },
   {
     id: 'ANOM-2026-0810',
@@ -210,7 +210,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Survey Attempts', claimedValue: '3 Deferred', expectedValue: '1 Completed', delta: 'Pending Field Visit' },
     ],
     recommendedAction: 'Deploy drone-assisted aerial photogrammetry unit with security escort for remote polygon confirmation.',
-    assignedOfficer: 'Ashish Karma (Assistant Conservator of Forests)',
+    assignedOfficer: 'Forest Protection Cell',
   },
   {
     id: 'ANOM-2026-0811',
@@ -230,7 +230,7 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Area Delta', claimedValue: '0.08', expectedValue: '0.00', unit: 'Ha', delta: 'Within 5% tolerance' },
     ],
     recommendedAction: 'Accept GPS track log as definitive boundary polygon per MoTA GIS Guidelines 2024.',
-    assignedOfficer: 'R. K. Dhurve (FRC Secretary)',
+    assignedOfficer: 'FRC Secretarial Desk',
   },
   {
     id: 'ANOM-2026-0812',
@@ -251,6 +251,6 @@ export const mockAnomalies: Anomaly[] = [
       { metric: 'Claim Type', claimedValue: 'CR (Community Rights)', expectedValue: 'Section 3(1)(l)', delta: 'Religious/Cultural Right' },
     ],
     recommendedAction: 'Exempt sacred grove per Section 3(1)(l) and rectify Working Plan demarcations.',
-    assignedOfficer: 'Anil Kujur (DFO Gumla)',
+    assignedOfficer: 'DFO Territorial Division, Gumla',
   }
 ];

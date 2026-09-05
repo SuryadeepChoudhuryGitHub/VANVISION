@@ -32,15 +32,15 @@ export const ClaimTrendChart: React.FC<ClaimTrendChartProps> = ({ data }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-xs p-4 flex flex-col h-full">
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs p-4 flex flex-col h-full">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-forest-800">
+          <div className="p-1.5 rounded-md bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-forest-800 dark:text-emerald-300">
             <BarChart2 className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-slate-900">Claim Activity Trajectory</h3>
-            <p className="text-[11px] text-slate-500">Monthly submissions, approvals, and rejections (2026)</p>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Claim Activity Trajectory</h3>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">Monthly submissions, approvals, and rejections (2026)</p>
           </div>
         </div>
 
@@ -48,10 +48,10 @@ export const ClaimTrendChart: React.FC<ClaimTrendChartProps> = ({ data }) => {
         <div className="flex items-center gap-1.5 text-xs">
           <button
             onClick={() => toggleSeries('submitted')}
-            className={`px-2.5 py-1 rounded-md border text-[11px] font-semibold transition-colors flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 rounded-md border text-[11px] font-semibold transition-colors flex items-center gap-1.5 cursor-pointer ${
               activeSeries.submitted
-                ? 'bg-blue-50 text-blue-700 border-blue-200 shadow-2xs'
-                : 'bg-slate-50 text-slate-400 border-slate-200 line-through'
+                ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800 shadow-2xs'
+                : 'bg-slate-50 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border-slate-200 dark:border-slate-700 line-through'
             }`}
           >
             <span className="w-2 h-2 rounded-full bg-blue-600"></span>
@@ -60,10 +60,10 @@ export const ClaimTrendChart: React.FC<ClaimTrendChartProps> = ({ data }) => {
 
           <button
             onClick={() => toggleSeries('approved')}
-            className={`px-2.5 py-1 rounded-md border text-[11px] font-semibold transition-colors flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 rounded-md border text-[11px] font-semibold transition-colors flex items-center gap-1.5 cursor-pointer ${
               activeSeries.approved
-                ? 'bg-emerald-50 text-emerald-700 border-emerald-200 shadow-2xs'
-                : 'bg-slate-50 text-slate-400 border-slate-200 line-through'
+                ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 shadow-2xs'
+                : 'bg-slate-50 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border-slate-200 dark:border-slate-700 line-through'
             }`}
           >
             <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
@@ -72,10 +72,10 @@ export const ClaimTrendChart: React.FC<ClaimTrendChartProps> = ({ data }) => {
 
           <button
             onClick={() => toggleSeries('rejected')}
-            className={`px-2.5 py-1 rounded-md border text-[11px] font-semibold transition-colors flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 rounded-md border text-[11px] font-semibold transition-colors flex items-center gap-1.5 cursor-pointer ${
               activeSeries.rejected
-                ? 'bg-rose-50 text-rose-700 border-rose-200 shadow-2xs'
-                : 'bg-slate-50 text-slate-400 border-slate-200 line-through'
+                ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800 shadow-2xs'
+                : 'bg-slate-50 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border-slate-200 dark:border-slate-700 line-through'
             }`}
           >
             <span className="w-2 h-2 rounded-full bg-rose-600"></span>

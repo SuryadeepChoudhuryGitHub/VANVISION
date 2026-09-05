@@ -18,8 +18,8 @@ export const MapLayerControl: React.FC<MapLayerControlProps> = ({
   ] as const;
 
   return (
-    <div className="bg-white/95 backdrop-blur-md p-1 rounded-xl border border-slate-200/90 shadow-lg flex items-center gap-1 pointer-events-auto">
-      <span className="hidden sm:inline-block px-2 text-[10px] font-extrabold uppercase tracking-wider text-slate-400 border-r border-slate-200">
+    <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-1 rounded-xl border border-slate-200/90 dark:border-slate-700 shadow-lg flex items-center gap-1 pointer-events-auto">
+      <span className="hidden sm:inline-block px-2 text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 border-r border-slate-200 dark:border-slate-700">
         GIS Layer
       </span>
       {layers.map((layer) => {
@@ -32,8 +32,8 @@ export const MapLayerControl: React.FC<MapLayerControlProps> = ({
             title={`Switch view to ${layer.label}`}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               isActive
-                ? 'bg-[#0a2e1f] text-white shadow-sm ring-1 ring-emerald-600/40'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/90'
+                ? 'bg-[#0a2e1f] dark:bg-emerald-950 text-white shadow-sm ring-1 ring-emerald-600/40'
+                : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/90 dark:hover:bg-slate-800'
             }`}
           >
             <Icon

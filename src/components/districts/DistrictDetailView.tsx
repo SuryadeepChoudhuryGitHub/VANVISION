@@ -26,37 +26,37 @@ export const DistrictDetailView: React.FC<DistrictDetailViewProps> = ({ district
   return (
     <div className="space-y-6">
       {/* Top Header & Back Action */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
             title="Back to All Districts"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-xl font-bold text-slate-900">{district.name}</h2>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">{district.name}</h2>
               <RiskBadge level={district.riskLevel} />
             </div>
-            <span className="text-xs text-slate-500">{district.state} • Central Tribal Forest Region</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">{district.state} • Central Tribal Forest Region</span>
           </div>
         </div>
 
         <div className="flex items-center gap-2 text-xs">
           <Link
             to={`/claims?districtId=${district.id}`}
-            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg font-semibold flex items-center gap-1.5 transition-colors"
+            className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg font-semibold flex items-center gap-1.5 transition-colors"
           >
-            <FileText className="w-3.5 h-3.5 text-forest-700" />
+            <FileText className="w-3.5 h-3.5 text-forest-700 dark:text-emerald-400" />
             <span>View Claims ({formatNumber(district.totalClaims)})</span>
           </Link>
           <Link
             to={`/anomalies?districtId=${district.id}`}
-            className="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 rounded-lg font-semibold flex items-center gap-1.5 transition-colors"
+            className="px-3 py-1.5 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 dark:hover:bg-rose-900/50 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50 rounded-lg font-semibold flex items-center gap-1.5 transition-colors"
           >
-            <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+            <AlertTriangle className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />
             <span>Anomalies ({district.activeAnomalies})</span>
           </Link>
         </div>
@@ -64,52 +64,52 @@ export const DistrictDetailView: React.FC<DistrictDetailViewProps> = ({ district
 
       {/* KPI Stats Strip */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
+        <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-1">
             <span>Total Claims</span>
-            <FileText className="w-4 h-4 text-forest-700" />
+            <FileText className="w-4 h-4 text-forest-700 dark:text-emerald-400" />
           </div>
-          <div className="text-2xl font-black text-slate-900 font-mono">
+          <div className="text-2xl font-black text-slate-900 dark:text-white font-mono">
             {formatNumber(district.totalClaims)}
           </div>
-          <span className="text-[10px] text-slate-400 mt-1 block">Registered under FRA 2006</span>
+          <span className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 block">Registered under FRA 2006</span>
         </div>
 
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
+        <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-1">
             <span>Approved (Titles)</span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
           </div>
-          <div className="text-2xl font-black text-emerald-700 font-mono">
+          <div className="text-2xl font-black text-emerald-700 dark:text-emerald-400 font-mono">
             {formatNumber(district.approvedClaims)}
           </div>
-          <span className="text-[10px] text-emerald-600 font-semibold mt-1 block">
+          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1 block">
             {formatPercent(district.approvalRate)} Title Vested
           </span>
         </div>
 
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
+        <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-1">
             <span>Pending Lifecycle</span>
-            <Clock className="w-4 h-4 text-amber-600" />
+            <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
           </div>
-          <div className="text-2xl font-black text-amber-700 font-mono">
+          <div className="text-2xl font-black text-amber-700 dark:text-amber-400 font-mono">
             {formatNumber(district.pendingClaims)}
           </div>
-          <span className="text-[10px] text-slate-500 mt-1 block">
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 block">
             Avg Duration: <b>{formatDays(district.avgProcessingDays)}</b>
           </span>
         </div>
 
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
+        <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-1">
             <span>Active Anomalies</span>
-            <AlertTriangle className="w-4 h-4 text-rose-600" />
+            <AlertTriangle className="w-4 h-4 text-rose-600 dark:text-rose-400" />
           </div>
-          <div className="text-2xl font-black text-rose-700 font-mono">
+          <div className="text-2xl font-black text-rose-700 dark:text-rose-400 font-mono">
             {district.activeAnomalies}
           </div>
-          <span className="text-[10px] text-rose-600 font-semibold mt-1 block">
+          <span className="text-[10px] text-rose-600 dark:text-rose-400 font-semibold mt-1 block">
             Composite Risk: {district.riskScore}/100
           </span>
         </div>
@@ -117,38 +117,38 @@ export const DistrictDetailView: React.FC<DistrictDetailViewProps> = ({ district
 
       {/* Demographic & Forest Baseline */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs flex items-center gap-3">
-          <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-forest-800">
+        <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
+          <div className="p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-forest-800 dark:text-emerald-300">
             <Trees className="w-5 h-5" />
           </div>
           <div>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
               Forest Canopy Area
             </span>
-            <span className="text-lg font-black text-slate-900 font-mono">
+            <span className="text-lg font-black text-slate-900 dark:text-white font-mono">
               {formatNumber(district.forestCoverSqKm)} km²
             </span>
-            <span className="text-[11px] text-slate-500 block">Model Benchmark (Estimated Proxy)</span>
+            <span className="text-[11px] text-slate-500 dark:text-slate-400 block">Model Benchmark (Estimated Proxy)</span>
           </div>
         </div>
 
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs flex items-center gap-3">
-          <div className="p-2.5 rounded-lg bg-blue-50 border border-blue-200 text-blue-700">
+        <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
+          <div className="p-2.5 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300">
             <Users className="w-5 h-5" />
           </div>
           <div>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
               Scheduled Tribe Share
             </span>
-            <span className="text-lg font-black text-slate-900 font-mono">
+            <span className="text-lg font-black text-slate-900 dark:text-white font-mono">
               {district.tribalPopulationPct}%
             </span>
-            <span className="text-[11px] text-slate-500 block">Demographic Model Estimate</span>
+            <span className="text-[11px] text-slate-500 dark:text-slate-400 block">Demographic Model Estimate</span>
           </div>
         </div>
 
-        <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs flex items-center gap-3">
-          <div className="p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-700">
+        <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
+          <div className="p-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300">
             <Building2 className="w-5 h-5" />
           </div>
           <div>
@@ -157,7 +157,7 @@ export const DistrictDetailView: React.FC<DistrictDetailViewProps> = ({ district
             </span>
             <div className="flex items-center gap-2 mt-1">
               <ClaimTypeBadge type={district.dominantClaimType} />
-              <span className="text-xs font-semibold text-slate-700">
+              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                 {district.dominantClaimType === 'IFR' ? 'Individual Forest Rights' : 'Community Forest Rights'}
               </span>
             </div>

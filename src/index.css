@@ -117,7 +117,8 @@
   }
   html.dark .bg-slate-50,
   html.dark .bg-slate-50\/80,
-  html.dark .bg-slate-50\/70 {
+  html.dark .bg-slate-50\/70,
+  html.dark .bg-slate-50\/90 {
     background-color: #1e293b !important;
   }
   html.dark .bg-slate-100 {
@@ -138,6 +139,17 @@
   html.dark .border-slate-100 {
     border-color: #334155 !important;
   }
+
+  /* Brand Accent Utility Classes */
+  .bg-brand-primary { background-color: var(--brand-primary) !important; }
+  .bg-brand-dark { background-color: var(--brand-dark) !important; }
+  .bg-brand-light { background-color: var(--brand-light) !important; }
+  .text-brand-primary { color: var(--brand-primary) !important; }
+  .text-brand-dark { color: var(--brand-dark) !important; }
+  .border-brand-primary { border-color: var(--brand-primary) !important; }
+  .border-brand-border { border-color: var(--brand-border) !important; }
+  .ring-brand-focus { --tw-ring-color: var(--brand-focus) !important; }
+  .accent-brand { accent-color: var(--brand-primary) !important; }
 
   body {
     @apply bg-slate-50 text-slate-800 antialiased;

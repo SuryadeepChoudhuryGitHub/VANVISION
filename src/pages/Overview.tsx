@@ -128,20 +128,20 @@ export const Overview: React.FC = () => {
       {/* 2. Main GIS Overview & Priority Districts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Large GIS Map Panel (2 cols) */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-xs p-4 flex flex-col">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs p-4 flex flex-col">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-forest-800">
+              <div className="p-1.5 rounded-md bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-forest-800 dark:text-emerald-300">
                 <Shield className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900">National Forest Land Cadastral Map</h3>
-                <p className="text-[11px] text-slate-500">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">National Forest Land Cadastral Map</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
                   Interactive district risk choropleth and anomaly clusters
                 </p>
               </div>
             </div>
-            <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
+            <span className="text-[11px] text-slate-400 dark:text-slate-500 font-mono hidden sm:inline">
               Datum: WGS 84 / WebGIS Standard
             </span>
           </div>
@@ -159,11 +159,11 @@ export const Overview: React.FC = () => {
 
             {/* Floating District Intelligence Card on District Selection */}
             {selectedDistrict && (
-              <div className="absolute top-4 right-4 z-20 shadow-xl rounded-xl overflow-hidden border border-slate-200 animate-in fade-in slide-in-from-right-4 duration-200">
+              <div className="absolute top-4 right-4 z-20 shadow-xl rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 animate-in fade-in slide-in-from-right-4 duration-200">
                 <div className="relative">
                   <button
                     onClick={() => setSelectedDistrict(null)}
-                    className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-700 bg-white/80 rounded-full z-30 transition-colors cursor-pointer"
+                    className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white bg-white/80 dark:bg-slate-800/80 rounded-full z-30 transition-colors cursor-pointer"
                     title="Close District Card"
                   >
                     <X className="w-4 h-4" />

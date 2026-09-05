@@ -126,17 +126,17 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggleCollapse })
               title={collapsed ? item.label : undefined}
               className={`relative flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium transition-all ${
                 isActive
-                  ? 'bg-emerald-800/50 text-white font-semibold shadow-xs'
-                  : 'text-emerald-100/70 hover:bg-emerald-900/40 hover:text-white'
+                  ? 'bg-white/10 text-white font-semibold shadow-xs'
+                  : 'text-emerald-100/70 hover:bg-white/5 hover:text-white'
               }`}
             >
               {/* Left Accent indicator for active page */}
               {isActive && (
-                <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-emerald-400 rounded-r-full shadow-xs" />
+                <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-brand-primary rounded-r-full shadow-xs" />
               )}
               <Icon
                 className={`w-4 h-4 shrink-0 transition-colors ${
-                  isActive ? 'text-emerald-300' : 'text-emerald-300/70'
+                  isActive ? 'text-brand-light brightness-125' : 'text-emerald-300/70'
                 }`}
               />
               {!collapsed && (

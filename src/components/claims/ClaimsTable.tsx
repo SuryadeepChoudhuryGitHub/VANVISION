@@ -22,16 +22,16 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
   onSelectClaim,
 }) => {
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden flex flex-col">
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden flex flex-col">
       {/* Table Top Counter */}
-      <div className="px-5 py-3 border-b border-slate-200 bg-slate-50/70 flex items-center justify-between text-xs">
+      <div className="px-5 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/70 flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
-          <span className="font-bold text-slate-800">Total Filtered Records:</span>
-          <span className="px-2 py-0.5 rounded-full bg-forest-100 text-forest-900 font-mono font-bold">
+          <span className="font-bold text-slate-800 dark:text-slate-200">Total Filtered Records:</span>
+          <span className="px-2 py-0.5 rounded-full bg-forest-100 dark:bg-emerald-950/60 text-forest-900 dark:text-emerald-300 font-mono font-bold">
             {total.toLocaleString()}
           </span>
         </div>
-        <span className="text-slate-500 text-[11px]">
+        <span className="text-slate-500 dark:text-slate-400 text-[11px]">
           Showing page {page} of {totalPages}
         </span>
       </div>
@@ -40,7 +40,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
-            <tr className="bg-slate-100/70 text-slate-600 uppercase tracking-wider text-[10px] font-bold border-b border-slate-200">
+            <tr className="bg-slate-100/70 dark:bg-slate-800/70 text-slate-600 dark:text-slate-400 uppercase tracking-wider text-[10px] font-bold border-b border-slate-200 dark:border-slate-800">
               <th className="py-3 px-4">Claim ID</th>
               <th className="py-3 px-4">Claimant / Community</th>
               <th className="py-3 px-4">District & Village</th>
@@ -52,13 +52,13 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
               <th className="py-3 px-4 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-200/80">
+          <tbody className="divide-y divide-slate-200/80 dark:divide-slate-800">
             {claims.length === 0 ? (
               <tr>
-                <td colSpan={9} className="py-12 text-center text-slate-500">
-                  <FileText className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                  <p className="font-medium text-sm text-slate-700">No claims match the active filters</p>
-                  <p className="text-xs text-slate-400 mt-0.5">Try adjusting your search criteria or reset filters</p>
+                <td colSpan={9} className="py-12 text-center text-slate-500 dark:text-slate-400">
+                  <FileText className="w-8 h-8 text-slate-300 dark:text-slate-600 mx-auto mb-2" />
+                  <p className="font-medium text-sm text-slate-700 dark:text-slate-300">No claims match the active filters</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Try adjusting your search criteria or reset filters</p>
                 </td>
               </tr>
             ) : (
@@ -69,13 +69,13 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
                 return (
                   <tr
                     key={claim.id}
-                    className="hover:bg-slate-50 transition-colors group cursor-pointer"
+                    className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer"
                     onClick={() => onSelectClaim(claim)}
                   >
                     {/* Claim ID */}
-                    <td className="py-3 px-4 font-mono font-bold text-slate-900">
+                    <td className="py-3 px-4 font-mono font-bold text-slate-900 dark:text-slate-100">
                       <div className="flex items-center gap-1.5">
-                        <span className="text-forest-850 hover:underline">{claim.id}</span>
+                        <span className="text-forest-850 dark:text-emerald-400 hover:underline">{claim.id}</span>
                         {hasAnomaly && (
                           <span
                             title="Flagged with active anomaly"
@@ -87,16 +87,16 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
 
                     {/* Claimant */}
                     <td className="py-3 px-4">
-                      <div className="font-semibold text-slate-900 leading-tight">
+                      <div className="font-semibold text-slate-900 dark:text-slate-100 leading-tight">
                         {claim.claimantName}
                       </div>
-                      <div className="text-[11px] text-slate-500">{claim.claimantCategory}</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">{claim.claimantCategory}</div>
                     </td>
 
                     {/* District & Village */}
                     <td className="py-3 px-4">
-                      <div className="font-medium text-slate-800">{claim.districtName}</div>
-                      <div className="text-[11px] text-slate-500 truncate max-w-[140px]">
+                      <div className="font-medium text-slate-800 dark:text-slate-200">{claim.districtName}</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate max-w-[140px]">
                         {claim.village}, {claim.block}
                       </div>
                     </td>
@@ -107,7 +107,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
                     </td>
 
                     {/* Submission */}
-                    <td className="py-3 px-4 text-slate-600 whitespace-nowrap">
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-300 whitespace-nowrap">
                       {formatDate(claim.submissionDate)}
                     </td>
 
@@ -121,11 +121,11 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
                       <span
                         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold ${
                           isDelayed
-                            ? 'bg-rose-50 text-rose-700 border border-rose-200'
-                            : 'bg-slate-100 text-slate-700'
+                            ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50'
+                            : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
                         }`}
                       >
-                        {isDelayed && <AlertTriangle className="w-3 h-3 text-rose-600" />}
+                        {isDelayed && <AlertTriangle className="w-3 h-3 text-rose-600 dark:text-rose-400" />}
                         {formatDays(claim.processingDays)}
                       </span>
                     </td>
@@ -134,7 +134,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
                     <td className="py-3 px-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <RiskBadge level={claim.riskLevel} />
-                        <span className="font-mono text-[11px] text-slate-500 font-semibold">
+                        <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
                           {claim.riskScore}
                         </span>
                       </div>
@@ -147,7 +147,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
                           e.stopPropagation();
                           onSelectClaim(claim);
                         }}
-                        className="p-1.5 text-forest-700 hover:text-forest-900 hover:bg-forest-50 rounded-md transition-colors inline-flex items-center gap-1 text-xs font-semibold"
+                        className="p-1.5 text-forest-700 dark:text-emerald-400 hover:text-forest-900 dark:hover:text-emerald-300 hover:bg-forest-50 dark:hover:bg-emerald-950/50 rounded-md transition-colors inline-flex items-center gap-1 text-xs font-semibold cursor-pointer"
                         title="View Detailed Claim Dossier"
                       >
                         <Eye className="w-4 h-4" />
@@ -163,8 +163,8 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
       </div>
 
       {/* Pagination Footer */}
-      <div className="px-5 py-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs">
-        <div className="text-slate-500">
+      <div className="px-5 py-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 flex items-center justify-between text-xs">
+        <div className="text-slate-500 dark:text-slate-400">
           Showing <b>{claims.length}</b> records on this page
         </div>
 
@@ -172,18 +172,18 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({
           <button
             disabled={page <= 1}
             onClick={() => onPageChange(page - 1)}
-            className="p-1.5 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="p-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
             title="Previous Page"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
-          <span className="font-mono text-xs font-semibold px-2 text-slate-800">
+          <span className="font-mono text-xs font-semibold px-2 text-slate-800 dark:text-slate-200">
             {page} / {totalPages}
           </span>
           <button
             disabled={page >= totalPages}
             onClick={() => onPageChange(page + 1)}
-            className="p-1.5 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="p-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
             title="Next Page"
           >
             <ChevronRight className="w-4 h-4" />

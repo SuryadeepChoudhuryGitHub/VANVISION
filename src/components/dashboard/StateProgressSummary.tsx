@@ -106,20 +106,20 @@ export const StateProgressSummary: React.FC<StateProgressSummaryProps> = ({
   }, [districts, anomalies]);
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-xs p-5 space-y-4">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs p-5 space-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
         <div className="flex items-center gap-2">
-          <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-forest-800">
+          <div className="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-forest-800 dark:text-emerald-300">
             <Building className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-slate-900">State-Wise Decision Support & Progress Matrix</h3>
-            <p className="text-[11px] text-slate-500">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">State-Wise Decision Support & Progress Matrix</h3>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">
               Aggregated from underlying district telemetry and calculated anomaly queues
             </p>
           </div>
         </div>
-        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 self-start sm:self-auto">
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 self-start sm:self-auto">
           {stateAggregates.length} Monitored States
         </span>
       </div>
@@ -127,7 +127,7 @@ export const StateProgressSummary: React.FC<StateProgressSummaryProps> = ({
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
-            <tr className="border-b border-slate-200 text-[10px] font-bold text-slate-500 uppercase tracking-wider bg-slate-50/70">
+            <tr className="border-b border-slate-200 dark:border-slate-800 text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider bg-slate-50/70 dark:bg-slate-800/70">
               <th className="py-2.5 px-3">State / Jurisdiction</th>
               <th className="py-2.5 px-3">Districts</th>
               <th className="py-2.5 px-3">Claims (Total)</th>
@@ -139,24 +139,24 @@ export const StateProgressSummary: React.FC<StateProgressSummaryProps> = ({
               <th className="py-2.5 px-3 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
             {stateAggregates.map((item) => (
-              <tr key={item.state} className="hover:bg-slate-50/80 transition-colors">
-                <td className="py-3 px-3 font-bold text-slate-900">
+              <tr key={item.state} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
+                <td className="py-3 px-3 font-bold text-slate-900 dark:text-white">
                   {item.state}
                 </td>
-                <td className="py-3 px-3 text-slate-600 font-mono">
+                <td className="py-3 px-3 text-slate-600 dark:text-slate-400 font-mono">
                   {item.districtsCount}
                 </td>
-                <td className="py-3 px-3 font-mono font-bold text-slate-800">
+                <td className="py-3 px-3 font-mono font-bold text-slate-800 dark:text-slate-200">
                   {formatNumber(item.totalClaims)}
                 </td>
                 <td className="py-3 px-3 min-w-[140px]">
-                  <div className="flex justify-between text-[10px] text-slate-500 mb-1">
-                    <span className="text-emerald-700 font-medium">{formatNumber(item.approvedClaims)} patta</span>
-                    <span className="text-amber-700 font-medium">{formatNumber(item.pendingClaims)} pend</span>
+                  <div className="flex justify-between text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                    <span className="text-emerald-700 dark:text-emerald-400 font-medium">{formatNumber(item.approvedClaims)} patta</span>
+                    <span className="text-amber-700 dark:text-amber-400 font-medium">{formatNumber(item.pendingClaims)} pend</span>
                   </div>
-                  <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
+                  <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden flex">
                     <div
                       style={{ width: `${(item.approvedClaims / item.totalClaims) * 100}%` }}
                       className="bg-emerald-600 h-full"
@@ -171,29 +171,29 @@ export const StateProgressSummary: React.FC<StateProgressSummaryProps> = ({
                     />
                   </div>
                 </td>
-                <td className="py-3 px-3 font-mono font-bold text-slate-800">
+                <td className="py-3 px-3 font-mono font-bold text-slate-800 dark:text-slate-200">
                   <span className="inline-flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                     <span>{formatPercent(item.approvalRate)}</span>
                   </span>
                 </td>
-                <td className="py-3 px-3 font-mono text-slate-700">
+                <td className="py-3 px-3 font-mono text-slate-700 dark:text-slate-300">
                   <span className="inline-flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-slate-400" />
+                    <Clock className="w-3 h-3 text-slate-400 dark:text-slate-500" />
                     <span>{item.avgProcessingDays}d</span>
                   </span>
                 </td>
                 <td className="py-3 px-3 font-mono">
                   {item.anomalyCount > 0 ? (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-900/60">
                       <AlertOctagon className="w-3 h-3" />
                       <span>{item.anomalyCount}</span>
                       {item.criticalAnomalyCount > 0 && (
-                        <span className="text-[9px] text-rose-900 font-black">({item.criticalAnomalyCount} crit)</span>
+                        <span className="text-[9px] text-rose-900 dark:text-rose-300 font-black">({item.criticalAnomalyCount} crit)</span>
                       )}
                     </span>
                   ) : (
-                    <span className="text-slate-400 text-[11px]">None flagged</span>
+                    <span className="text-slate-400 dark:text-slate-500 text-[11px]">None flagged</span>
                   )}
                 </td>
                 <td className="py-3 px-3">
@@ -202,7 +202,7 @@ export const StateProgressSummary: React.FC<StateProgressSummaryProps> = ({
                 <td className="py-3 px-3 text-right">
                   <Link
                     to={`/districts?state=${encodeURIComponent(item.state)}`}
-                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-forest-800 hover:text-forest-900 hover:underline"
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-primary hover:text-brand-dark dark:text-emerald-400 hover:underline"
                   >
                     <span>Inspect</span>
                     <ArrowRight className="w-3 h-3" />

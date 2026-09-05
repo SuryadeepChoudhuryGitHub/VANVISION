@@ -7,6 +7,15 @@ export type AnimationMode = 'full' | 'reduced' | 'off';
 export type BorderRadiusMode = 'sharp' | 'standard' | 'soft';
 
 export interface SystemSettings {
+  // Application Profile / Identity (Generic Evaluation Session)
+  userName: string;
+  userRole: string;
+  userInitials: string;
+
+  // AI Decision-Support Configuration
+  aiApiKey: string;
+  aiProvider: 'gemini' | 'offline_deterministic';
+
   // Appearance
   theme: ThemeMode;
   accent: AccentColor;
@@ -51,6 +60,15 @@ export interface SystemSettings {
 }
 
 export const DEFAULT_SETTINGS: SystemSettings = {
+  // Application Profile / Identity
+  userName: 'System Administrator',
+  userRole: 'FRA Monitoring Console',
+  userInitials: 'SA',
+
+  // AI Decision-Support Configuration
+  aiApiKey: '',
+  aiProvider: 'gemini',
+
   // Appearance
   theme: 'light',
   accent: 'forest',
