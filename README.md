@@ -4,7 +4,7 @@
  
 > **EVALUATION & PROTOTYPE STATUS NOTICE:**
 > VANVISION is a prototype research application developed for problem statement **PS-7**. All cadastral claim records, applicant profiles, and district metrics contained in this repository are **simulated/synthetic demonstration data**. No live connection to official government databases or official MoTA production portals is claimed or implied. See [DATA_SOURCES.md](DATA_SOURCES.md) for full data provenance details.
-
+ 
 ---
 
 ## Overview
